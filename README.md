@@ -47,3 +47,21 @@ Visual QA
 - SAM 2
 - Depth Anything V2
 - Florence-2
+
+##  Current Features
+
+- Open Vocabulary Object Detection (Grounding DINO)
+- Modular AI Pipeline
+- Gradio Web Interface
+- Configuration Management
+- Logging System
+- Extensible Model Architecture
+
+##  Coming Soon
+
+- SAM 2 Segmentation
+- Depth Anything V2
+- Florence-2 Captioning
+- Scene Graph Generation
+- Visual Question Answering
+- Benchmark Dashboard
