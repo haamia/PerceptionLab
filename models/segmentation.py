@@ -1,7 +1,7 @@
 """
 SAM2 placeholder.
 """
-
+from config import SEGMENTATION_MODEL
 
 def segment(image):
 

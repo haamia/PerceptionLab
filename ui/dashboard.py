@@ -6,60 +6,34 @@ Builds the main PerceptionLab dashboard.
 
 import gradio as gr
 from services.pipeline import run_pipeline
-
+from config import APP_TITLE, APP_SUBTITLE
 
 
 def build_dashboard():
 
-    with gr.Blocks(
-        title="PerceptionLab"
-    ) as demo:
+    with gr.Blocks(title="PerceptionLab") as demo:
 
         gr.Markdown(
-            """
-#  PerceptionLab
+            f"""
+# 🔬 {APP_TITLE}
 
-### A Modular Computer Vision Research Toolkit
+### {APP_SUBTITLE}
 """
         )
 
         with gr.Row():
 
             # ---------------- Sidebar ----------------
-
             with gr.Column(scale=1):
 
                 gr.Markdown("## Pipeline")
 
-                detection = gr.Checkbox(
-                    value=True,
-                    label="Detection"
-                )
-
-                segmentation = gr.Checkbox(
-                    value=True,
-                    label="Segmentation"
-                )
-
-                depth = gr.Checkbox(
-                    value=True,
-                    label="Depth"
-                )
-
-                caption = gr.Checkbox(
-                    value=True,
-                    label="Caption"
-                )
-
-                scene = gr.Checkbox(
-                    value=True,
-                    label="Scene Graph"
-                )
-
-                vqa = gr.Checkbox(
-                    value=True,
-                    label="Visual QA"
-                )
+                detection = gr.Checkbox(value=True, label="Detection")
+                segmentation = gr.Checkbox(value=True, label="Segmentation")
+                depth = gr.Checkbox(value=True, label="Depth")
+                caption = gr.Checkbox(value=True, label="Caption")
+                scene = gr.Checkbox(value=True, label="Scene Graph")
+                vqa = gr.Checkbox(value=True, label="Visual QA")
 
                 run = gr.Button(
                     "Run Pipeline",
@@ -67,7 +41,6 @@ def build_dashboard():
                 )
 
             # ---------------- Images ----------------
-
             with gr.Column(scale=2):
 
                 input_image = gr.Image(
