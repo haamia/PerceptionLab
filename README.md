@@ -1,4 +1,4 @@
-# 🔬 PerceptionLab
+#  PerceptionLab
 
 A modular computer vision framework for unified scene understanding using state-of-the-art foundation models.
 
@@ -6,7 +6,7 @@ PerceptionLab combines open-vocabulary object detection, promptable segmentation
 
 ---
 
-## ✨ Features
+##  Features
 
 -  Open Vocabulary Object Detection (Grounding DINO)
 -  Promptable Segmentation (SAM2)
