@@ -1,67 +1,172 @@
-# PerceptionLab
+# 🔬 PerceptionLab
 
-PerceptionLab is a modular computer vision research toolkit designed for modern scene understanding using Vision Foundation Models.
+A modular computer vision framework for unified scene understanding using state-of-the-art foundation models.
 
-## Vision
+PerceptionLab combines open-vocabulary object detection, promptable segmentation, monocular depth estimation, and an interactive visualization interface into a single perception pipeline.
 
-A single image should be analyzed through multiple perception modules:
+---
 
-- Open Vocabulary Detection
-- Image Segmentation
-- Depth Estimation
-- Scene Graph Generation
-- Image Captioning
-- Visual Question Answering
-- Benchmark Dashboard
+## ✨ Features
 
-## Project Status
+-  Open Vocabulary Object Detection (Grounding DINO)
+-  Promptable Segmentation (SAM2)
+-  Monocular Depth Estimation (Depth Anything V2)
+-  Performance Benchmark Dashboard
+-  Unified Visualization
+-  Interactive Gradio Interface
+-  Modular Architecture
 
- Phase 1 — Framework Development
+---
 
-## Planned Architecture
+## Current Pipeline
 
 ```
-Image
-   │
-   ▼
-Detection
-   │
-Segmentation
-   │
-Depth
-   │
-Scene Graph
-   │
-Caption
-   │
-Visual QA
+                Input Image
+                     │
+                     ▼
+            Grounding DINO
+                     │
+             DetectionResult
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+       SAM2            Depth Anything V2
+          │                     │
+SegmentationResult      DepthResult
+          └──────────┬──────────┘
+                     ▼
+          PerceptionVisualizer
+                     │
+                     ▼
+               Final Output
 ```
 
-## Tech Stack
+---
+
+## Current Modules
+
+| Module | Status |
+|---------|:------:|
+| Grounding DINO | ✅ |
+| SAM2 | ✅ |
+| Depth Anything V2 | ✅ |
+| Detection Visualization | ✅ |
+| Segmentation Visualization | ✅ |
+| Depth Visualization | ✅ |
+| Benchmark Dashboard | ✅ |
+| Gradio UI | ✅ |
+
+---
+
+## Project Structure
+
+```
+PerceptionLab/
+
+├── app.py
+├── config.py
+│
+├── core/
+│   ├── managers/
+│   └── results.py
+│
+├── models/
+│   ├── grounding_dino.py
+│   ├── sam2.py
+│   ├── depth_anything.py
+│   └── base_model.py
+│
+├── services/
+│   └── pipeline.py
+│
+├── ui/
+│   └── dashboard.py
+│
+├── utils/
+│   ├── logger.py
+│   └── visualization/
+│       ├── colors.py
+│       ├── detection.py
+│       ├── segmentation.py
+│       ├── depth.py
+│       └── perception.py
+```
+
+---
+
+## Technologies
 
 - Python
 - PyTorch
-- Gradio
-- OpenCV
+- Transformers
 - Grounding DINO
-- SAM 2
+- SAM2
 - Depth Anything V2
-- Florence-2
+- OpenCV
+- Gradio
 
-##  Current Features
+---
 
-- Open Vocabulary Object Detection (Grounding DINO)
-- Modular AI Pipeline
-- Gradio Web Interface
-- Configuration Management
-- Logging System
-- Extensible Model Architecture
+## Installation
 
-##  Coming Soon
+```bash
+git clone https://github.com/haamia/PerceptionLab.git
 
-- SAM 2 Segmentation
+cd PerceptionLab
+
+python -m venv venv
+
+source venv/bin/activate
+# Windows
+venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+
+Run
+
+```bash
+python app.py
+```
+
+---
+
+## Roadmap
+
+###  v0.1
+
+- Grounding DINO
+- SAM2
+
+###  v0.2
+
 - Depth Anything V2
+- Unified Visualization
+- Benchmark Dashboard
+
+###  Planned
+
 - Florence-2 Captioning
 - Scene Graph Generation
 - Visual Question Answering
-- Benchmark Dashboard
+- OCR
+- Multi-image Reasoning
+- Video Support
+- Model Zoo
+- Fast / High Accuracy Modes
+
+---
+
+## License
+
+MIT License
+
+---
+
+## Author
+
+**Haamia Farooq**
+
+Department of Mechatronics Engineering
+
+National University of Sciences and Technology (NUST)
