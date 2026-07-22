@@ -63,7 +63,10 @@ def build_dashboard():
                 segmentation_box = gr.Textbox(lines=8)
 
             with gr.Tab("Depth"):
-                depth_box = gr.Textbox(lines=8)
+                depth_box = gr.Image(
+                 label="Depth Map",
+                 type="pil",)
+             
 
             with gr.Tab("Scene Graph"):
                 scene_box = gr.Textbox(lines=8)

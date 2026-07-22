@@ -32,6 +32,7 @@ CAPTION_MODEL = "Florence-2"
 
 VQA_MODEL = "Florence-2"
 
+
 # ==========================================================
 # Runtime
 # ==========================================================
@@ -42,9 +43,30 @@ BOX_THRESHOLD = 0.35
 
 TEXT_THRESHOLD = 0.25
 
+# ==========================
+# SAM 2
+# ==========================
+
+SAM2_MODEL_ID = "facebook/sam2.1-hiera-base-plus"
+SAM2_DEVICE = DEVICE
+
+CHECKPOINTS_DIR = PROJECT_ROOT / "checkpoints"
+
+SAM2_CHECKPOINT = CHECKPOINTS_DIR / "sam2.1_hiera_base_plus.pt"
+
+SAM2_CONFIG = "configs/sam2.1/sam2.1_hiera_b+.yaml"
+
+
+# ---------------- Depth Anything V2 ----------------
+
+DEPTH_MODEL_ID = "depth-anything/Depth-Anything-V2-Base-hf"
+
+DEPTH_DEVICE = DEVICE
+
 # ==========================================================
 # UI
 # ==========================================================
+
 
 APP_TITLE = "PerceptionLab"
 

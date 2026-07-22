@@ -5,6 +5,9 @@ Grounding DINO wrapper for PerceptionLab.
 import torch
 
 from PIL import Image
+from core.results import DetectionResult
+from utils.logger import logger
+
 
 from transformers import (
     AutoProcessor,
@@ -33,25 +36,21 @@ class GroundingDINO(VisionModel):
         if self.processor is not None:
             return
 
-        print("Loading processor...")
+        
 
         self.processor = AutoProcessor.from_pretrained(
             GROUNDING_DINO_MODEL
         )
 
-        print("Processor loaded.")
-
-        print("Loading model...")
-
+    
         self.model = AutoModelForZeroShotObjectDetection.from_pretrained(
             GROUNDING_DINO_MODEL
         )
 
-        print("Model loaded.")
-
+       
         self.model.to(DEVICE)
 
-        print("Grounding DINO loaded.")
+        logger.info("Grounding DINO initialized.")
 
     def detect(
         self,
@@ -88,7 +87,12 @@ class GroundingDINO(VisionModel):
             )
         )
 
-        return results[0]
+        result=results[0]
+        return DetectionResult(
+         boxes=result["boxes"],
+         scores=result["scores"],
+         labels=result["text_labels"],)
+        
 
     def predict(self, image):
 
