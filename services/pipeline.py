@@ -48,6 +48,9 @@ def run_pipeline(image):
     depth_time = time.perf_counter()
     depth_image = depth_visualizer.draw(depth)
 
+    caption = manager.caption(image)
+    caption_time = time.perf_counter()
+
     result_image = visualizer.draw(
       image,
      segmentations,
@@ -58,7 +61,7 @@ def run_pipeline(image):
     # ---------------- Other Modules ----------------
 
 
-    caption = generate_caption(image)
+  
 
     scene = generate_scene_graph(image)
 
@@ -85,6 +88,12 @@ def run_pipeline(image):
 
     Segmentation Model :
     SAM2.1 Hiera Base+
+    
+    Depth Model :
+    Depth Anything V2 Base
+
+    Caption Model :
+    Florence-2 Base
 
     Detection Time :
     {detection_time - start_time:.2f} sec
@@ -94,6 +103,10 @@ def run_pipeline(image):
 
     Depth Time :
     {depth_time - segmentation_time:.2f} sec
+
+
+    Caption Time :
+    {caption_time - depth_time:.2f} sec
 
 
 
@@ -110,7 +123,7 @@ def run_pipeline(image):
         segmentations.summary(),
         depth_image,
         scene,
-        caption,
+        caption.caption,
         vqa,
         benchmark,
     )

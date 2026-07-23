@@ -63,6 +63,12 @@ DEPTH_MODEL_ID = "depth-anything/Depth-Anything-V2-Base-hf"
 
 DEPTH_DEVICE = DEVICE
 
+# ---------------- Florence 2 ----------------
+
+FLORENCE_MODEL = "microsoft/Florence-2-base"
+
+FLORENCE_DEVICE = DEVICE
+
 # ==========================================================
 # UI
 # ==========================================================

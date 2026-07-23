@@ -68,3 +68,22 @@ class DepthResult:
             return "No depth map generated."
 
         return "Depth map generated successfully."
+
+@dataclass
+class CaptionResult:
+    """
+    Stores image caption.
+    """
+
+    caption: str
+
+    @property
+    def is_empty(self):
+        return self.caption is None or self.caption == ""
+
+    def summary(self):
+
+        if self.is_empty:
+            return "No caption generated."
+
+        return self.caption

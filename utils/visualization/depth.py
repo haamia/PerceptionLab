@@ -22,15 +22,13 @@ class DepthVisualizer:
 
         depth = depth_result.depth_map
 
-        # Clamp values to [0, 1]
         depth = np.clip(depth, 0.0, 1.0)
 
-        # Turbo colormap (Matplotlib 3.11)
+       
         cmap = matplotlib.colormaps["turbo"]
 
         colored = cmap(depth)
 
-        # Remove alpha channel
         colored = colored[:, :, :3]
 
         # Convert to uint8

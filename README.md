@@ -6,55 +6,68 @@ PerceptionLab combines open-vocabulary object detection, promptable segmentation
 
 ---
 
-##  Features
+## Features
 
--  Open Vocabulary Object Detection (Grounding DINO)
--  Promptable Segmentation (SAM2)
--  Monocular Depth Estimation (Depth Anything V2)
--  Performance Benchmark Dashboard
--  Unified Visualization
--  Interactive Gradio Interface
--  Modular Architecture
+- Open-Vocabulary Object Detection using Grounding DINO
+- Automatic Object Prompt Generation using Florence-2
+- Image Captioning with Florence-2
+- Zero-shot Instance Segmentation with SAM2.1
+- Monocular Depth Estimation with Depth Anything V2
+- Scene Graph Generation
+- Visual Question Answering
+- Unified Benchmark Dashboard
+- Interactive Gradio Interface
 
 ---
 
 ## Current Pipeline
 
 ```
-                Input Image
-                     │
-                     ▼
-            Grounding DINO
-                     │
-             DetectionResult
-                     │
-          ┌──────────┴──────────┐
-          ▼                     ▼
-       SAM2            Depth Anything V2
-          │                     │
-SegmentationResult      DepthResult
-          └──────────┬──────────┘
-                     ▼
-          PerceptionVisualizer
-                     │
-                     ▼
-               Final Output
+                +----------------------+
+                |      Input Image     |
+                +----------+-----------+
+                           |
+        +------------------+------------------+
+        |                  |                  |
+        v                  v                  v
++----------------+  +---------------+  +----------------+
+| Florence-2     |  | Grounding DINO|  | Depth Anything |
+| Captioning     |  | Open-Vocabulary| | V2             |
++--------+-------+  | Detection      | +----------------+
+         |          +-------+--------+
+         |                  |
+         |        Florence-2 Object Proposal
+         |                  |
+         +-----------------+
+                           |
+                           v
+                    Grounding DINO
+                           |
+                           v
+                         SAM2.1
+                           |
+                           v
+                Segmentation + Visualization
+                           |
+                           v
+               Scene Graph + Visual Question Answering
 ```
 
 ---
 
 ## Current Modules
 
-| Module | Status |
-|---------|:------:|
-| Grounding DINO | ✅ |
-| SAM2 | ✅ |
-| Depth Anything V2 | ✅ |
-| Detection Visualization | ✅ |
-| Segmentation Visualization | ✅ |
-| Depth Visualization | ✅ |
-| Benchmark Dashboard | ✅ |
-| Gradio UI | ✅ |
+## Models
+
+| Module | Model |
+|---------|-------|
+| Captioning | Microsoft Florence-2 Base |
+| Object Proposal | Microsoft Florence-2 Base |
+| Detection | Grounding DINO |
+| Segmentation | SAM2.1 Hiera Base+ |
+| Depth Estimation | Depth Anything V2 Base |
+| Scene Graph | Custom |
+| VQA | LLaVA / Custom |
 
 ---
 
@@ -74,7 +87,9 @@ PerceptionLab/
 │   ├── grounding_dino.py
 │   ├── sam2.py
 │   ├── depth_anything.py
-│   └── base_model.py
+|   ├── florence2.py
+│   └── base_model.py 
+
 │
 ├── services/
 │   └── pipeline.py
@@ -140,18 +155,19 @@ python app.py
 
 ###  v0.2
 
+- Florence-2 Captioning
+- Florence-2 Automatic Object Proposal
 - Depth Anything V2
-- Unified Visualization
 - Benchmark Dashboard
+- Unified Visualization
 
 ###  Planned
 
-- Florence-2 Captioning
 - Scene Graph Generation
 - Visual Question Answering
 - OCR
-- Multi-image Reasoning
 - Video Support
+- Multi-image Reasoning
 - Model Zoo
 - Fast / High Accuracy Modes
 
