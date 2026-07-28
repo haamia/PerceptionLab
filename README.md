@@ -6,10 +6,10 @@ PerceptionLab combines open-vocabulary object detection, promptable segmentation
 
 ---
 
-=======
+
 ## Features
 
- (Integrate Florence-2 open vocabulary object proposal pipeline)
+- Automatic object proposal generation using Florence-2
 - Open-Vocabulary Object Detection using Grounding DINO
 - Automatic Object Prompt Generation using Florence-2
 - Image Captioning with Florence-2
