@@ -1,22 +1,35 @@
 """
-Consistent colors for visualization.
+Professional color palette for visualization.
+Inspired by Ultralytics YOLO.
 """
 
-CLASS_COLORS = {
-    "person": (0, 114, 189),
-    "cat": (0, 180, 255),
-    "dog": (255, 140, 0),
-    "couch": (0, 200, 0),
-    "chair": (50, 205, 50),
-    "car": (255, 0, 0),
-    "remote control": (255, 215, 0),
-    "tv": (128, 0, 255),
-    "laptop": (255, 0, 255),
-}
+COLORS = [
+    (255, 56, 56),      # Red
+    (255, 157, 0),      # Orange
+    (255, 112, 31),     # Dark Orange
+    (255, 178, 29),     # Yellow
+    (207, 210, 49),     # Lime
+    (72, 249, 10),      # Green
+    (146, 204, 23),     # Olive
+    (61, 219, 134),     # Emerald
+    (26, 147, 52),      # Dark Green
+    (0, 212, 187),      # Cyan
+    (44, 153, 168),     # Teal
+    (0, 194, 255),      # Sky Blue
+    (52, 69, 147),      # Blue
+    (100, 115, 255),    # Indigo
+    (0, 24, 236),       # Deep Blue
+    (132, 56, 255),     # Purple
+    (203, 56, 255),     # Magenta
+    (255, 149, 200),    # Pink
+]
 
 
-DEFAULT_COLOR = (0, 255, 255)
+def get_color(label: str):
+    """
+    Returns a consistent color for each class.
+    """
 
+    idx = abs(hash(label.lower())) % len(COLORS)
 
-def get_color(label):
-    return CLASS_COLORS.get(label, DEFAULT_COLOR)
+    return COLORS[idx]

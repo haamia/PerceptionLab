@@ -5,8 +5,6 @@ from models.sam2 import SAM2
 from models.depth_anything import DepthAnything
 from models.florence2 import Florence2
 
-from utils.prompt import DEFAULT_DETECTION_PROMPT
-
 
 class PipelineManager(BaseManager):
 
@@ -24,23 +22,37 @@ class PipelineManager(BaseManager):
         self.depth.load()
         self.florence.load()
 
-    def detect(self, image):
+    def detect(
+        self,
+        image,
+        prompt,
+    ):
 
         return self.detector.detect(
             image,
-            DEFAULT_DETECTION_PROMPT,
+            prompt,
         )
 
-    def segment(self, image, detections):
+    def segment(
+        self,
+        image,
+        detections,
+    ):
 
         return self.segmenter.segment(
             image,
             detections,
         )
-    
-    def estimate_depth(self, image):
-     return self.depth.estimate(image)
 
-    
+    def estimate_depth(self, image):
+
+        return self.depth.estimate(image)
+
     def caption(self, image):
-     return self.florence.caption(image)
+
+        return self.florence.caption(image)
+
+
+    def detect_objects(self, image):
+
+     return self.florence.detect_objects(image)

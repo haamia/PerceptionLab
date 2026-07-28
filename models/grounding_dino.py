@@ -94,9 +94,13 @@ class GroundingDINO(VisionModel):
          labels=result["text_labels"],)
         
 
-    def predict(self, image):
+    def predict(
+     self,
+     image,
+     prompt,
+    ):
 
-        return self.detect(
-            image,
-            "person . car . chair . dog . cat ."
-        )
+     return self.detect(
+        image,
+        prompt,
+     )

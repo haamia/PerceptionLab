@@ -5,6 +5,7 @@ Builds the main PerceptionLab dashboard.
 """
 
 import gradio as gr
+
 from services.pipeline import run_pipeline
 from config import APP_TITLE, APP_SUBTITLE
 
@@ -24,65 +25,122 @@ def build_dashboard():
         with gr.Row():
 
             # ---------------- Sidebar ----------------
+
             with gr.Column(scale=1):
 
                 gr.Markdown("## Pipeline")
 
-                detection = gr.Checkbox(value=True, label="Detection")
-                segmentation = gr.Checkbox(value=True, label="Segmentation")
-                depth = gr.Checkbox(value=True, label="Depth")
-                caption = gr.Checkbox(value=True, label="Caption")
-                scene = gr.Checkbox(value=True, label="Scene Graph")
-                vqa = gr.Checkbox(value=True, label="Visual QA")
+                detection = gr.Checkbox(
+                    value=True,
+                    label="Detection"
+                )
+
+                segmentation = gr.Checkbox(
+                    value=True,
+                    label="Segmentation"
+                )
+
+                depth = gr.Checkbox(
+                    value=True,
+                    label="Depth"
+                )
+
+                caption = gr.Checkbox(
+                    value=True,
+                    label="Caption"
+                )
+
+                scene = gr.Checkbox(
+                    value=True,
+                    label="Scene Graph"
+                )
+
+                vqa = gr.Checkbox(
+                    value=True,
+                    label="Visual QA"
+                )
+
+                gr.Markdown("### Detection Prompt")
+
+                detection_prompt = gr.Textbox(
+                    label="Optional",
+                    placeholder="Leave blank for automatic prompt generation using Florence-2...",
+                    lines=2,
+                )
 
                 run = gr.Button(
                     "Run Pipeline",
-                    variant="primary"
+                    variant="primary",
                 )
 
             # ---------------- Images ----------------
+
             with gr.Column(scale=2):
 
                 input_image = gr.Image(
                     type="numpy",
-                    label="Input Image"
+                    label="Input Image",
                 )
 
             with gr.Column(scale=2):
 
                 output_image = gr.Image(
-                    label="Output Preview"
+                    label="Output Preview",
                 )
+
+        # ---------------- Results ----------------
 
         with gr.Tabs():
 
             with gr.Tab("Detection"):
-                detection_box = gr.Textbox(lines=8)
+
+                detection_box = gr.Textbox(
+                    lines=8,
+                )
 
             with gr.Tab("Segmentation"):
-                segmentation_box = gr.Textbox(lines=8)
+
+                segmentation_box = gr.Textbox(
+                    lines=8,
+                )
 
             with gr.Tab("Depth"):
+
                 depth_box = gr.Image(
-                 label="Depth Map",
-                 type="pil",)
-             
+                    label="Depth Map",
+                    type="pil",
+                )
 
             with gr.Tab("Scene Graph"):
-                scene_box = gr.Textbox(lines=8)
+
+                scene_box = gr.Textbox(
+                    lines=8,
+                )
 
             with gr.Tab("Caption"):
-                caption_box = gr.Textbox(lines=8)
+
+                caption_box = gr.Textbox(
+                    lines=8,
+                )
 
             with gr.Tab("Visual QA"):
-                vqa_box = gr.Textbox(lines=8)
+
+                vqa_box = gr.Textbox(
+                    lines=8,
+                )
 
             with gr.Tab("Benchmark"):
-                benchmark_box = gr.Textbox(lines=8)
+
+                benchmark_box = gr.Textbox(
+                    lines=12,
+                )
 
         run.click(
             fn=run_pipeline,
-            inputs=input_image,
+            inputs=[
+                input_image,
+                detection_prompt,
+            ],
             outputs=[
                 output_image,
                 detection_box,
