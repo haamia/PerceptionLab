@@ -10,15 +10,14 @@ PerceptionLab combines open-vocabulary object detection, promptable segmentation
 ## Features
 
 - Automatic object proposal generation using Florence-2
-- Open-Vocabulary Object Detection using Grounding DINO
-- Automatic Object Prompt Generation using Florence-2
-- Image Captioning with Florence-2
-- Zero-shot Instance Segmentation with SAM2.1
-- Monocular Depth Estimation with Depth Anything V2
-- Scene Graph Generation
-- Visual Question Answering
-- Unified Benchmark Dashboard
-- Interactive Gradio Interface
+- Open-vocabulary object detection with Grounding DINO
+- Zero-shot instance segmentation using SAM2.1
+- Image captioning with Florence-2
+- Monocular depth estimation using Depth Anything V2
+- Interactive Gradio dashboard
+- Performance benchmarking dashboard
+- Scene Graph Generation (in development)
+- Visual Question Answering (in development)
 
 ---
 
